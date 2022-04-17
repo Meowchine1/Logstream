@@ -60,51 +60,41 @@ namespace Task1VoroninaVar5
 
             connection.Close();
         }
-        public static void AdoPrintOrderbyHousesOlderThan5yearsAgoRebuilding() {
+        public static void PrintOrderbyHousesOlderThan5yearsAgoRebuilding() {
 
             using var connection = new SqlConnection(@"Server=WIN-QGN772BFJ6Q\MYSQL;Database=City1;Trusted_Connection=True;");
             connection.Open();
 
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT h.Id, s.streetName from Houses h join Streets s on h.streetId = s.streetId ";
+            command.CommandText = "Select streetId, count(streetId) as k  from Houses h inner join Streets s on h.streetId = s.Id where h.year < 2017  group by streetId";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($" House number {reader.GetString(reader.GetOrdinal("Id"))}  Street name {reader.GetString(reader.GetOrdinal("streetName"))}");
+                Console.WriteLine($" House number {reader.GetInt32(reader.GetOrdinal("streetId"))}  house num {reader.GetInt32(reader.GetOrdinal("k"))}");
             }
 
             connection.Close();
         }
-        public static void AdoMakeRebuildingOldestHome() {
+        public static void  MakeRebuildingOldestHome() {
 
             using var connection = new SqlConnection(@"Server=WIN-QGN772BFJ6Q\MYSQL;Database=City1;Trusted_Connection=True;");
             connection.Open();
-
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT h.Id, s.streetName from Houses h join Streets s on h.streetId = s.streetId ";
-
+            command.CommandText = "update Houses set Houses.year = 2022 FROM Houses h WHERE h.year in (SELECT MIN(year) FROM Houses)";
             using var reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Console.WriteLine($" House number {reader.GetString(reader.GetOrdinal("Id"))}  Street name {reader.GetString(reader.GetOrdinal("streetName"))}");
-            }
-
             connection.Close();
         }
-        public static void AdoDeleteSmallHouses() {
+        public static void DeleteSmallHouses() {
 
             using var connection = new SqlConnection(@"Server=WIN-QGN772BFJ6Q\MYSQL;Database=City1;Trusted_Connection=True;");
             connection.Open();
 
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT h.Id, s.streetName from Houses h join Streets s on h.streetId = s.streetId ";
+            command.CommandText = "delete from Houses FROM Houses h WHERE h.flatNum in (SELECT MIN(flatNum) FROM Houses)";
 
             using var reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Console.WriteLine($" House number {reader.GetString(reader.GetOrdinal("Id"))}  Street name {reader.GetString(reader.GetOrdinal("streetName"))}");
-            }
+            
 
             connection.Close();
         }

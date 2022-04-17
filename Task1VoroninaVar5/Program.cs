@@ -13,4 +13,6 @@ using Task1VoroninaVar5;
 //Ado.PrintOrderbyHouses();
 //Ado.PrintOrderbyHousesByRebildNeed();
 //Ado.PrintOrderbyHousesLessThanMeanRebuilding();
-
+//Ado.PrintOrderbyHousesOlderThan5yearsAgoRebuilding();
+//Ado.MakeRebuildingOldestHome();
+//Ado.DeleteSmallHouses();
