@@ -2,6 +2,9 @@
 
 
 using Task1VoroninaVar5;
+
+
+
 //EF.PrintOrderbyHouses();
 //EF.PrintOrderbyHousesByRebildNeed();
 //EF.PrintOrderbyHousesLessThanMeanRebuilding();
