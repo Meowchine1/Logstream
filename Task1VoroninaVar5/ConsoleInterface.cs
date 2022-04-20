@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task1VoroninaVar5
 {
-    internal class ConsoleInterface
+    public class ConsoleInterface
     {
-        private static int action;
+        private static int action = 1;
     
 
         public static void StartAction()
@@ -31,7 +31,15 @@ namespace Task1VoroninaVar5
 
         static void ShowMenu()
         {
-            Console.WriteLine("1:  2:  3:  4:  5:  6:  7:  8:  9:  10:  11:  12:  13:  14:  15:  16:  ");
+            Console.WriteLine("1: menu \n" +
+                "2: Вывести список домов (номер, улица), отсортированных по давности последнего ремонта \n" +
+                "3:Вывести список домов (номер, улица), отсортированных по степени потребности в ремонте \n " +
+                                "(число квартир * давность ремонта). Чем дом населённей, тем выше его приоритет в очереди на капитальный ремонт. \n" +
+                                " 4:Вывести список домов, ремонтированных позже среднего по базе. \n" +
+                                "5:Вывести пары: {улица, число домов}, ремонтированных позднее 5 лет тому назад \n" +
+                                "6:Извлечь самый старый по ремонту дом, поправить, что ремонт состоялся в текущем году.\n  " +
+                                "7: Найти самый маленький по числу квартир дом (возможно их несколько), и удалить их из базы. \n" +
+                                "8:Найти наименее заселённую улицу (по суммарному числу квартир всех домов), и добавить на неё дом. \n  9:  10:  11:  12:  13:  14:  15:  16:  ");
         }
 
         static void SwitchAction( int action)
@@ -49,80 +57,95 @@ namespace Task1VoroninaVar5
                         break;
                     case (2): 
                         {
+                            Console.WriteLine("");
                             EF.PrintOrderbyHouses();
                         }
                         break;
 
                     case (3):
                         {
+                            Console.WriteLine("");
                             EF.PrintOrderbyHousesByRebildNeed();
                         }
                         break;
                     case (4):
                         {
-
+                            Console.WriteLine("");
                             EF.PrintOrderbyHousesLessThanMeanRebuilding();
 
                         }
                         break;
                     case (5):
                         {
+                            Console.WriteLine("");
 
                             EF.PrintOrderbyHousesOlderThan5yearsAgoRebuilding();
                         }
                         break;
                     case (6):
                         {
-
+                            Console.WriteLine("");
                             EF.MakeRebuildingOldestHome();
                         }
                         break;
                     case (7):
                         {
-
+                            Console.WriteLine(" ");
                             EF.DeleteSmallHouses();
 
                         }
                         break;
                     case (8):
                         {
+                            Console.WriteLine("");
                             EF.IncreaseSmallStreet();
 
                         }
                         break;
                     case (9):
                         {
+                            Console.WriteLine("");
                             Ado.PrintOrderbyHouses();
                         }
                         break;
                     case (10):
                         {
+                            Console.WriteLine("");
                             Ado.PrintOrderbyHousesByRebildNeed();
                         }
                         break;
                     case (11):
                         {
-                            Ado.PrintOrderbyHousesOlderThan5yearsAgoRebuilding();
-
+                            Console.WriteLine("");
+                            Ado.PrintOrderbyHousesLessThanMeanRebuilding();
                         }
                         break;
                     case (12):
                         {
+                            Console.WriteLine("");
+                            Ado.PrintOrderbyHousesOlderThan5yearsAgoRebuilding();
 
-                            Ado.MakeRebuildingOldestHome();
                         }
                         break;
                     case (13):
                         {
-                            Ado.DeleteSmallHouses();
-
+                            Console.WriteLine("");
+                            Ado.MakeRebuildingOldestHome();
                         }
                         break;
                     case (14):
                         {
+                            Console.WriteLine("");
+                            Ado.DeleteSmallHouses();
+
+                        }
+                        break;
+                    case (15):
+                        {
                             //NOTHING AAAAAAAA
                         }
                         break;
+                   
 
                 }
             }

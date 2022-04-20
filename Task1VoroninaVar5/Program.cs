@@ -3,7 +3,8 @@
 
 using Task1VoroninaVar5;
 
-
+ConsoleInterface.StartAction();
+Console.WriteLine();
 
 //EF.PrintOrderbyHouses();
 //EF.PrintOrderbyHousesByRebildNeed();
