@@ -78,14 +78,15 @@ namespace Task1VoroninaVar5
             using (CityContext db = new CityContext())
             {
                 var houses = from h in db.Houses
-                             .Where(x => x.year < DateTime.Now.Year)
+                             .Where(x => x.year > DateTime.Now.Year - 5)
                              join s in db.Streets on h.streetId equals s.Id
-                             group s by s.Id into grp
+                             group s by s.Name into grp
                              select new
                              {
                                  
                                  Name = grp.Key,
-                                 Count = grp.Count()
+                                 Count = grp.Count()                    
+                                 
                              };
                 foreach (var elem in houses)
                 {
@@ -118,8 +119,9 @@ namespace Task1VoroninaVar5
 
                 int min = db.Houses.Min(x => x.flatNum);
                 var smallObj = db.Houses.Where(x => x.flatNum == min);
-
+                
                 foreach (var elem in smallObj) {
+                    Console.WriteLine($"House {elem.Id} is deleted");
                     db.Houses.Remove(elem);
                     
                         }
@@ -155,7 +157,11 @@ namespace Task1VoroninaVar5
                              };
 
                 var streetId = houses.OrderBy(x => x.SUM).Select(x => x.streetId).First();
-
+                var streetName = db.Streets.Where(x => x.Id == streetId);
+                foreach (var elem in streetName)
+                {
+                    Console.WriteLine("Название улицы " + elem.Name);
+                }
                 var newHouse = new House {
                     flatNum = 45,
                     streetId = streetId,
